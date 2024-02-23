@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const response = await fetch('/usuario');
+        if (!response.ok) {
+            throw new Error('Erro ao buscar dados do usuário: ' + response.statusText);
+        }
         const userData = await response.json();
         
         if (userData) {
@@ -23,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('data-nascimento').textContent = formattedDataNascimento;
         }
     } catch (error) {
-        console.error('Erro ao buscar dados do usuário:', error);
+        console.error(error);
     }
 });
 

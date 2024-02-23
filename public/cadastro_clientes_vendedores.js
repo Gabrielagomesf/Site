@@ -1,7 +1,42 @@
-// cadastro_clientes_vendedores.js
 document.addEventListener('DOMContentLoaded', async () => {
-    // Aqui você pode adicionar qualquer inicialização necessária quando a página é carregada
+    await carregarVendedores();
 });
+
+async function carregarVendedores() {
+    try {
+        const response = await fetch('/vendedores', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        if (response.ok) {
+            const vendedores = await response.json();
+            const select = document.getElementById('vendedor-atendimento');
+            // Limpar as opções existentes
+            select.innerHTML = '';
+            // Adicionar uma opção vazia
+            const option = document.createElement('option');
+            option.value = '';
+            option.text = 'Selecione um vendedor';
+            select.appendChild(option);
+            // Adicionar vendedores como opções
+            vendedores.forEach(vendedor => {
+                const option = document.createElement('option');
+                option.value = vendedor._id;
+                option.text = vendedor.nome;
+                select.appendChild(option);
+            });
+        } else {
+            const errorMessage = await response.text();
+            throw new Error(errorMessage);
+        }
+    } catch (error) {
+        console.error('Erro ao carregar vendedores:', error.message);
+        alert('Erro ao carregar vendedores. Por favor, tente novamente mais tarde.');
+    }
+}
 
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
@@ -17,7 +52,6 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
-// Corrigido o ID do botão de sair
 document.getElementById('btn-sair').addEventListener('click', function() {
     if (confirm('Deseja realmente sair?')) {
         window.location.href = '/index.html';
@@ -49,6 +83,8 @@ document.getElementById('form-vendedor').addEventListener('submit', async functi
             const data = await response.json();
             alert(data.message);
             document.getElementById('form-vendedor').reset();
+            // Recarregar a lista de vendedores após cadastrar um novo vendedor
+            await carregarVendedores();
         } else {
             const errorMessage = await response.text();
             throw new Error(errorMessage);
