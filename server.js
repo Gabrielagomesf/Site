@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Conexão com o banco de dados MongoDB
-const uri = 'mongodb+srv://goomes016:Gabixp22@cluster0.3sa5lso.mongodb.net/';
+const uri = 'sua_conexao_mongoo';
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Conectado ao banco de dados'))
     .catch(error => console.error('Erro na conexão ao banco de dados:', error));
