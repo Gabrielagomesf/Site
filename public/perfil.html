@@ -12,6 +12,20 @@
 <div class="navbar">
     <a href="#" class="active">Início</a>
     <a href="#">Perfil</a>
+    <div class="dropdown">
+        <button class="dropbtn">Perfil Financeiro</button>
+        <div class="dropdown-content">
+            <a href="/cadastro_clientes_vendedores.html">Cadastro de Clientes e Vendedores</a>
+            <a href="/aprovacao_pedidos.html">Aprovação de Pedidos</a>
+            <a href="/listagem_clientes_vendedores.html">Listagem de Clientes e Vendedores</a>
+            <a href="/gestao_bancos_contas.html">Gestão de Bancos e Contas</a>
+            <a href="/relatorios_financeiros.html">Relatórios Financeiros</a>
+            <a href="/historico_alteracoes.html">Histórico de Alterações</a>
+            <a href="/contas_pagar_receber.html">Contas a Pagar e Receber</a>
+            <a href="/gestao_comissoes.html">Gestão de Comissões</a>
+            <a href="/gestao_inadimplencia.html">Gestão de Inadimplência</a>
+        </div>
+    </div>
     <a href="#" id="btn-sair">Sair</a>
 </div>
 
@@ -19,12 +33,18 @@
 <div class="content">
     <h1>Perfil do Usuário</h1>
     <div class="profile-info">
-        <h2>Informações Pessoais</h2>
-        <p><strong>Nome:</strong> <span id="nome-usuario"></span></p>
-        <p><strong>Email:</strong> <span id="email"></span></p>
-        <p><strong>Cargo:</strong> <span id="cargo"></span></p>
-        <p><strong>Setor:</strong> <span id="setor"></span></p>
-        <p><strong>Data de Nascimento:</strong> <span id="data-nascimento"></span></p>
+        <!-- Espaço para a foto do perfil -->
+        <div class="profile-picture">
+            <img src="/images/usuario.jpg" alt="Foto do perfil">
+        </div>
+        <div class="personal-info">
+            <h2>Informações Pessoais</h2>
+            <p><strong>Nome:</strong> <span id="nome-usuario"></span></p>
+            <p><strong>Email:</strong> <span id="email"></span></p>
+            <p><strong>Cargo:</strong> <span id="cargo"></span></p>
+            <p><strong>Setor:</strong> <span id="setor"></span></p>
+            <p><strong>Data de Nascimento:</strong> <span id="data-nascimento"></span></p>
+        </div>
     </div>
 </div>
 

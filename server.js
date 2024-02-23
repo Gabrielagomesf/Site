@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Conexão com o banco de dados MongoDB
-const uri = 'mongodb+srv://goomes016:Gabixp22@cluster0.h0skxsl.mongodb.net/';
+const uri = 'mongodb+srv://goomes016:Gabixp22@cluster0.3sa5lso.mongodb.net/';
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Conectado ao banco de dados'))
     .catch(error => console.error('Erro na conexão ao banco de dados:', error));
@@ -31,6 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Configuração do diretório para servir arquivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
 // Configuração da sessão
 app.use(session({

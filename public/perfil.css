@@ -17,6 +17,7 @@ body {
     background-color: #3498db; /* Azul */
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra na barra de navegação */
+    white-space: nowrap; /* Impede que os itens da barra de navegação quebrem linha */
 }
 
 .navbar a {
@@ -28,18 +29,62 @@ body {
     text-decoration: none;
     transition: background-color 0.3s ease;
     border-right: 1px solid #2980b9; /* Adiciona borda à direita em cada item */
+    overflow: hidden; /* Esconde qualquer conteúdo que ultrapasse o contêiner */
+    text-overflow: ellipsis; /* Exibe reticências (...) quando o conteúdo é cortado */
 }
 
-.navbar a:last-child {
-    border-right: none; /* Remove borda à direita do último item */
-}
-
+/* Estilo hover para a barra de navegação */
 .navbar a:hover {
     background-color: #2980b9; /* Azul mais escuro */
 }
 
-.navbar a.active {
-    background-color: #2980b9; /* Azul mais escuro para o item ativo */
+/* Estilos para o menu suspenso */
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: #2980b9; /* Azul mais escuro */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando necessário */
+    max-height: 300px; /* Altura máxima do menu suspenso */
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 /* Estilos para o conteúdo da página */
@@ -59,6 +104,7 @@ body {
     text-align: center;
 }
 
+/* Estilos para o perfil do usuário */
 .profile-info {
     padding: 20px;
     margin-bottom: 20px;
@@ -81,6 +127,18 @@ body {
     line-height: 1.6;
 }
 
+/* Estilos para a foto do perfil */
+.profile-picture {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture img {
+    width: 150px; /* Ajuste o tamanho conforme necessário */
+    height: 150px; /* Ajuste o tamanho conforme necessário */
+    border-radius: 50%; /* Para tornar a imagem circular */
+}
+
 /* Estilos para o rodapé */
 footer {
     background-color: #3498db; /* Azul claro */
@@ -89,5 +147,20 @@ footer {
     padding: 10px 0;
     bottom: 0;
     width: 100%;
-    position: absolute;
+    position: fixed;
+}
+
+/* Estilos para os botões */
+.btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #2980b9; /* Azul mais escuro */
 }

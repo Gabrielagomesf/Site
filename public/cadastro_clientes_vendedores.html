@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Clientes e Vendedores</title>
+    <link rel="stylesheet" type="text/css" href="cadastro_clientes_vendedores.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a href="#" class="active">Início</a>
+    <a href="/perfil.html">Perfil</a>
+    <div class="dropdown">
+        <button class="dropbtn">Perfil Financeiro</button>
+        <div class="dropdown-content">
+            <a href="/cadastro_clientes_vendedores.html">Cadastro de Clientes e Vendedores</a>
+            <a href="/aprovacao_pedidos.html">Aprovação de Pedidos</a>
+            <a href="/listagem_clientes_vendedores.html">Listagem de Clientes e Vendedores</a>
+            <a href="/gestao_bancos_contas.html">Gestão de Bancos e Contas</a>
+            <a href="/relatorios_financeiros.html">Relatórios Financeiros</a>
+            <a href="/historico_alteracoes.html">Histórico de Alterações</a>
+            <a href="/contas_pagar_receber.html">Contas a Pagar e Receber</a>
+            <a href="/gestao_comissoes.html">Gestão de Comissões</a>
+            <a href="/gestao_inadimplencia.html">Gestão de Inadimplência</a>
+        </div>
+    </div>
+    <a href="#" id="btn-sair">Sair</a>
+</div>
+
+<!-- Conteúdo da página -->
+<div class="content">
+    <h1>Cadastro de Clientes e Vendedores</h1>
+    <div class="tabs">
+        <button class="tablinks active" onclick="openTab(event, 'vendedor')">Vendedor</button>
+        <button class="tablinks" onclick="openTab(event, 'cliente')">Cliente</button>
+    </div>
+    <!-- Aba do Vendedor -->
+    <div id="vendedor" class="tabcontent" style="display:block;">
+        <form id="form-vendedor">
+            <label for="nome-vendedor">Nome Completo:</label><br>
+            <input type="text" id="nome-vendedor" name="nome-vendedor"><br>
+
+            <label for="codigo-vendedor">Código do Vendedor:</label><br>
+            <input type="text" id="codigo-vendedor" name="codigo-vendedor" readonly><br>
+
+            <label for="telefone-vendedor">Telefone:</label><br>
+            <input type="text" id="telefone-vendedor" name="telefone-vendedor"><br>
+
+            <label for="regiao-vendedor">Região/Cidade:</label><br>
+            <input type="text" id="regiao-vendedor" name="regiao-vendedor"><br>
+
+            <label for="observacao-vendedor">Observação:</label><br>
+            <textarea id="observacao-vendedor" name="observacao-vendedor"></textarea><br>
+
+            <input type="submit" value="Cadastrar Vendedor">
+        </form>
+    </div>
+
+    <!-- Aba do Cliente -->
+    <div id="cliente" class="tabcontent">
+        <form id="form-cliente">
+            <label for="razao-social">Razão Social:</label><br>
+            <input type="text" id="razao-social" name="razao-social"><br>
+
+            <label for="nome-fantasia">Nome Fantasia:</label><br>
+            <input type="text" id="nome-fantasia" name="nome-fantasia"><br>
+
+            <label for="cnpj-cpf">CNPJ/CPF:</label><br>
+            <input type="text" id="cnpj-cpf" name="cnpj-cpf"><br>
+
+            <label for="endereco">Endereço:</label><br>
+            <input type="text" id="endereco" name="endereco"><br>
+
+            <label for="vendedor-atendimento">Vendedor de Atendimento:</label><br>
+            <select id="vendedor-atendimento" name="vendedor-atendimento">
+                <!-- Opções de vendedores aqui -->
+            </select><br>
+
+            <label for="observacao-cliente">Observação:</label><br>
+            <textarea id="observacao-cliente" name="observacao-cliente"></textarea><br>
+
+            <label for="limite-credito">Limite de Crédito:</label><br>
+            <input type="text" id="limite-credito" name="limite-credito"><br>
+
+            <label for="tipo-regime-estadual">Tipo de Regime Estadual:</label><br>
+            <input type="text" id="tipo-regime-estadual" name="tipo-regime-estadual"><br>
+
+            <label for="numero-telefones">Número de Telefones:</label><br>
+            <input type="text" id="numero-telefones" name="numero-telefones"><br>
+
+            <label for="responsavel-compras">Responsável pelas Compras:</label><br>
+            <input type="text" id="responsavel-compras" name="responsavel-compras"><br>
+
+            <label for="responsavel-financeiro">Responsável pelo Financeiro:</label><br>
+            <input type="text" id="responsavel-financeiro" name="responsavel-financeiro"><br>
+
+            <label for="responsavel-geral">Responsável Geral:</label><br>
+            <input type="text" id="responsavel-geral" name="responsavel-geral"><br>
+
+            <label for="numero-ie">Número de Inscrição Estadual:</label><br>
+            <input type="text" id="numero-ie" name="numero-ie"><br>
+
+            <!-- Campo para upload de PDFs -->
+            <label for="pdfs">Documentos (PDFs):</label><br>
+            <input type="file" id="pdfs" name="pdfs" multiple><br>
+
+            <input type="submit" value="Cadastrar Cliente">
+        </form>
+    </div>
+</div>
+
+<!-- Rodapé -->
+<footer>
+    <p>&copy; 2024 Todos os direitos reservados.</p>
+</footer>
+
+<script src="cadastro_clientes_vendedores.js"></script>
+</body>
+</html>
