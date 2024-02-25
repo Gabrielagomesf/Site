@@ -1,3 +1,4 @@
+// Função para alternar entre as abas
 function openTab(evt, tabName) {
     var tabcontent = document.getElementsByClassName("tabcontent");
     for (var i = 0; i < tabcontent.length; i++) {
@@ -13,6 +14,7 @@ function openTab(evt, tabName) {
     evt.currentTarget.classList.add("active");
 }
 
+// Função para buscar clientes
 function buscarClientes() {
     var filter = document.getElementById("search-input-clientes").value.toUpperCase();
 
@@ -57,6 +59,7 @@ function buscarClientes() {
         });
 }
 
+// Função para buscar vendedores
 function buscarVendedores() {
     var filter = document.getElementById("search-input-vendedores").value.toUpperCase();
 
@@ -105,6 +108,7 @@ function buscarVendedores() {
         });
 }
 
+// Função para gerar planilha de clientes
 function gerarPlanilhaClientes() {
     var tabela = document.getElementById("tabela-clientes");
     var dados = [["CNPJ/CPF", "Razão Social", "Código", "Data de Cadastro"]];
@@ -124,6 +128,7 @@ function gerarPlanilhaClientes() {
     XLSX.writeFile(wb, "planilha_clientes.xlsx");
 }
 
+// Função para gerar planilha de vendedores
 function gerarPlanilhaVendedores() {
     var tabela = document.getElementById("tabela-vendedores");
     var dados = [["Nome", "Telefone", "Região", "Código", "Data de Cadastro"]];
@@ -142,6 +147,30 @@ function gerarPlanilhaVendedores() {
 
     XLSX.writeFile(wb, "planilha_vendedores.xlsx");
 }
+
+document.getElementById("btn-sair").addEventListener("click", function() {
+    // Exibe uma mensagem de confirmação
+    var confirmacao = confirm("Tem certeza de que deseja sair?");
+
+    if (confirmacao) {
+        fetch('/auth/logout', {
+            method: 'POST'
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao fazer logout: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            window.location.href = "/index.html";
+        })
+        .catch(error => {
+            console.error('Erro ao fazer logout:', error);
+            alert('Erro ao fazer logout. Por favor, tente novamente mais tarde.');
+        });
+    }
+});
 
 document.getElementById("search-btn-clientes").addEventListener("click", buscarClientes);
 document.getElementById("search-input-clientes").addEventListener("keypress", function (e) {
