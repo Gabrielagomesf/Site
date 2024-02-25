@@ -64,6 +64,7 @@ document.getElementById('form-vendedor').addEventListener('submit', async functi
     const telefone = document.getElementById('telefone-vendedor').value;
     const regiao = document.getElementById('regiao-vendedor').value;
     const observacao = document.getElementById('observacao-vendedor').value;
+    const dataCadastro = new Date().toISOString(); // Adiciona a data e hora atual do cadastro
     
     try {
         const response = await fetch('/cadastrar_vendedor', {
@@ -75,7 +76,8 @@ document.getElementById('form-vendedor').addEventListener('submit', async functi
                 nome: nome,
                 telefone: telefone,
                 regiao: regiao,
-                observacao: observacao
+                observacao: observacao,
+                dataCadastro: dataCadastro // Adiciona o campo dataCadastro
             })
         });
         
@@ -110,6 +112,7 @@ document.getElementById('form-cliente').addEventListener('submit', async functio
     const responsavelFinanceiro = document.getElementById('responsavel-financeiro').value;
     const responsavelGeral = document.getElementById('responsavel-geral').value;
     const numeroIE = document.getElementById('numero-ie').value;
+    const dataCadastro = new Date().toISOString(); // Adiciona a data e hora atual do cadastro
     
     try {
         const response = await fetch('/cadastrar_cliente', {
@@ -130,7 +133,8 @@ document.getElementById('form-cliente').addEventListener('submit', async functio
                 responsavelCompras: responsavelCompras,
                 responsavelFinanceiro: responsavelFinanceiro,
                 responsavelGeral: responsavelGeral,
-                numeroIE: numeroIE
+                numeroIE: numeroIE,
+                dataCadastro: dataCadastro // Adiciona o campo dataCadastro
             })
         });
         

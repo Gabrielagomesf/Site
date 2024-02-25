@@ -29,7 +29,8 @@ const Vendedor = mongoose.model('Vendedor', {
     nome: String,
     telefone: String,
     regiao: String,
-    observacao: String
+    observacao: String,
+    dataHoraCadastro: { type: Date, default: Date.now }
 });
 
 const Cliente = mongoose.model('Cliente', {
@@ -45,7 +46,8 @@ const Cliente = mongoose.model('Cliente', {
     responsavelCompras: String,
     responsavelFinanceiro: String,
     responsavelGeral: String,
-    numeroIE: String
+    numeroIE: String,
+    dataHoraCadastro: { type: Date, default: Date.now }
 });
 
 // Configuração dos middleware
@@ -81,14 +83,13 @@ const authenticateUser = (req, res, next) => {
 };
 
 // Rotas
+
+// Rota principal
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/perfil.html', authenticateUser, (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'perfil.html'));
-});
-
+// Rota para registro de usuário
 app.post('/auth/registro', async (req, res) => {
     const { username, password, email, cargo, setor, dataNascimento } = req.body;
 
@@ -115,6 +116,7 @@ app.post('/auth/registro', async (req, res) => {
     }
 });
 
+// Rota para login de usuário
 app.post('/auth/login', async (req, res) => {
     const { username, password } = req.body;
 
@@ -142,6 +144,7 @@ app.post('/auth/login', async (req, res) => {
     }
 });
 
+// Rota para logout de usuário
 app.post('/auth/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {
@@ -151,6 +154,7 @@ app.post('/auth/logout', (req, res) => {
     });
 });
 
+// Rota para obter dados do usuário autenticado
 app.get('/usuario', authenticateUser, async (req, res) => {
     try {
         const user = await User.findOne({ username: req.session.user.username });
@@ -194,12 +198,58 @@ app.post('/cadastrar_cliente', async (req, res) => {
 
 // Rota para obter vendedores
 app.get('/vendedores', async (req, res) => {
+    const { q } = req.query;
+    let filter = {};
+    if (q) {
+        filter = {
+            $or: [
+                { nome: { $regex: q, $options: 'i' } },
+                { telefone: { $regex: q, $options: 'i' } },
+                { regiao: { $regex: q, $options: 'i' } },
+                { observacao: { $regex: q, $options: 'i' } }
+            ]
+        };
+    }
+
     try {
-        const vendedores = await Vendedor.find();
+        const vendedores = await Vendedor.find(filter);
         res.json(vendedores);
     } catch (error) {
         console.error('Erro ao obter vendedores:', error);
         res.status(500).json({ error: 'Erro interno do servidor ao obter vendedores' });
+    }
+});
+
+// Rota para obter clientes
+app.get('/clientes', async (req, res) => {
+    const { q } = req.query;
+    let filter = {};
+    if (q) {
+        filter = {
+            $or: [
+                { razaoSocial: { $regex: q, $options: 'i' } },
+                { nomeFantasia: { $regex: q, $options: 'i' } },
+                { cnpjCpf: { $regex: q, $options: 'i' } },
+                { endereco: { $regex: q, $options: 'i' } },
+                { vendedorAtendimento: { $regex: q, $options: 'i' } },
+                { observacaoCliente: { $regex: q, $options: 'i' } },
+                { limiteCredito: { $regex: q, $options: 'i' } },
+                { tipoRegimeEstadual: { $regex: q, $options: 'i' } },
+                { numeroTelefones: { $regex: q, $options: 'i' } },
+                { responsavelCompras: { $regex: q, $options: 'i' } },
+                { responsavelFinanceiro: { $regex: q, $options: 'i' } },
+                { responsavelGeral: { $regex: q, $options: 'i' } },
+                { numeroIE: { $regex: q, $options: 'i' } }
+            ]
+        };
+    }
+
+    try {
+        const clientes = await Cliente.find(filter);
+        res.json(clientes);
+    } catch (error) {
+        console.error('Erro ao obter clientes:', error);
+        res.status(500).json({ error: 'Erro interno do servidor ao obter clientes' });
     }
 });
 

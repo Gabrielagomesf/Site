@@ -1,0 +1,268 @@
+/* Reset CSS básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ecf0f1; /* Azul claro */
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para a barra de navegação */
+.navbar {
+    background-color: #2980b9; /* Azul */
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra na barra de navegação */
+    white-space: nowrap; /* Impede que os itens da barra de navegação quebrem linha */
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border-right: 1px solid #266489; /* Azul mais claro */
+    overflow: hidden; /* Esconde qualquer conteúdo que ultrapasse o contêiner */
+    text-overflow: ellipsis; /* Exibe reticências (...) quando o conteúdo é cortado */
+}
+
+.navbar a:hover {
+    background-color: #266489; /* Azul mais escuro */
+}
+
+/* Estilos para o menu suspenso */
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: #266489; /* Azul mais escuro */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando necessário */
+    max-height: 300px; /* Altura máxima do menu suspenso */
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Estilos para o conteúdo da página */
+.content {
+    padding: 20px;
+    margin: 20px auto;
+    background-color: #ffffff; /* Branco */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra no conteúdo */
+    max-width: 1200px; /* Largura máxima do conteúdo */
+}
+
+.content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333; /* Preto */
+    text-align: center;
+}
+
+/* Estilos para a barra de pesquisa */
+.search-bar {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#search-input-clientes, #search-input-vendedores {
+    padding: 10px;
+    width: 40%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#search-btn-clientes, #search-btn-vendedores {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#search-btn-clientes:hover, #search-btn-vendedores:hover {
+    background-color: #45a049; /* Verde mais escuro */
+}
+
+/* Estilos para as abas */
+.tabs {
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.tablinks {
+    background-color: #3498db;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    transition: 0.3s;
+    border-radius: 10px 10px 0 0;
+    margin-right: 2px;
+    color: white;
+}
+
+.tablinks:hover {
+    background-color: #2980b9;
+}
+
+.tablinks.active {
+    background-color: #ccc;
+    color: #333;
+}
+
+.tabcontent {
+    display: none;
+    padding: 20px;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Estilos para o formulário */
+form {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ecf0f1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+form input[type="text"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form textarea:focus,
+form select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px #3498db;
+}
+
+form input[type="submit"] {
+    width: 100%;
+    background-color: #3498db;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* Estilos para os conteúdos das abas */
+.tabcontent {
+    display: none;
+    padding: 20px;
+    border-top: 1px solid #ccc;
+}
+
+/* Estilos para a lista de clientes e vendedores */
+#lista-clientes, #lista-vendedores {
+    list-style-type: none;
+    padding: 0;
+}
+
+#lista-clientes li, #lista-vendedores li {
+    padding: 15px;
+    border-bottom: 1px solid #ddd; /* Cinza claro */
+    transition: background-color 0.3s ease;
+}
+
+#lista-clientes li:hover, #lista-vendedores li:hover {
+    background-color: #f9f9f9; /* Cinza claro quando hover */
+}
+
+/* Estilos para o botão "Gerar Planilha de Clientes" e "Gerar Planilha de Vendedores" */
+#gerar-planilha-clientes, #gerar-planilha-vendedores {
+    padding: 10px 20px;
+    background-color: #2980b9; /* Azul */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Espaçamento superior */
+}
+
+#gerar-planilha-clientes:hover, #gerar-planilha-vendedores:hover {
+    background-color: #266489; /* Azul mais escuro */
+}
+
+/* Estilos para o rodapé */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2980b9; /* Azul */
+    color: #fff; /* Branco */
+    position: fixed; /* Fixa o rodapé na parte inferior da janela do navegador */
+    bottom: 0; /* Coloca o rodapé no final da janela do navegador */
+    width: 100%; /* Define a largura do rodapé para ocupar toda a largura da janela */
+}
