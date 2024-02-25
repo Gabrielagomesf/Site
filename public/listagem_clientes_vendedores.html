@@ -46,9 +46,23 @@
             <button id="search-btn-clientes">Buscar</button>
         </div>
         <!-- Lista de Clientes -->
-        <ul id="lista-clientes">
-            <!-- Os dados dos clientes serão carregados aqui -->
-        </ul>
+        <div class="table-container">
+            <h2>Tabela de Clientes</h2>
+            <table id="tabela-clientes">
+                <thead>
+                    <tr>
+                        <th>CNPJ/CPF</th>
+                        <th>Razão Social</th>
+                        <th>Código</th>
+                        <th>Data de Cadastro</th>
+                        <!-- Adicione mais colunas conforme necessário -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Os dados dos clientes serão carregados aqui -->
+                </tbody>
+            </table>
+        </div>
         <!-- Botão para gerar planilha de clientes -->
         <button id="gerar-planilha-clientes">Gerar Planilha de Clientes</button>
     </div>
@@ -60,9 +74,24 @@
             <button id="search-btn-vendedores">Buscar</button>
         </div>
         <!-- Lista de Vendedores -->
-        <ul id="lista-vendedores">
-            <!-- Os dados dos vendedores serão carregados aqui -->
-        </ul>
+        <div class="table-container">
+            <h2>Tabela de Vendedores</h2>
+            <table id="tabela-vendedores">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Região</th>
+                        <th>Código</th>
+                        <th>Data de Cadastro</th>
+                        <!-- Adicione mais colunas conforme necessário -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Os dados dos vendedores serão carregados aqui -->
+                </tbody>
+            </table>
+        </div>
         <!-- Botão para gerar planilha de vendedores -->
         <button id="gerar-planilha-vendedores">Gerar Planilha de Vendedores</button>
     </div>
@@ -73,7 +102,7 @@
     <p>&copy; 2024 Todos os direitos reservados.</p>
 </footer>
 
+<script src="xlsx.full.min.js"></script>
 <script src="listagem_clientes_vendedores.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
 </body>
 </html>
