@@ -30,7 +30,8 @@ const Vendedor = mongoose.model('Vendedor', {
     telefone: String,
     regiao: String,
     observacao: String,
-    dataHoraCadastro: { type: Date, default: Date.now }
+    tipoContrato: String,
+    dataInicioContrato: Date
 });
 
 const Cliente = mongoose.model('Cliente', {
@@ -47,7 +48,19 @@ const Cliente = mongoose.model('Cliente', {
     responsavelFinanceiro: String,
     responsavelGeral: String,
     numeroIE: String,
-    dataHoraCadastro: { type: Date, default: Date.now }
+    dataHoraCadastro: { type: Date, default: Date.now },
+    tipoCliente: String,
+    formaPagamento: String,
+    prazoPagamento: String,
+    modalidadeEntrega: String,
+    descontoMaximo: String,
+    prazoEntrega: String,
+    responsavelEntrega: String,
+    tipoIndustriaComercio: String,
+    descricaoProdutosServicos: String,
+    areaAtuacao: String,
+    segmento: String,
+    faturamentoAnual: String
 });
 
 // Configuração dos middleware
@@ -170,10 +183,11 @@ app.get('/usuario', authenticateUser, async (req, res) => {
 
 // Rota para cadastrar vendedor
 app.post('/cadastrar_vendedor', async (req, res) => {
-    const { nome, telefone, regiao, observacao } = req.body;
+    const { nome, telefone, regiao, observacao, tipoContrato, dataInicioContrato } = req.body;
 
     try {
-        const novoVendedor = new Vendedor({ nome, telefone, regiao, observacao });
+        const novoVendedor = new Vendedor({ nome, telefone, regiao, observacao, tipoContrato, dataInicioContrato });
+        novoVendedor.dataCadastro = new Date();
         await novoVendedor.save();
         res.status(200).json({ message: 'Vendedor cadastrado com sucesso!' });
     } catch (error) {
@@ -184,10 +198,11 @@ app.post('/cadastrar_vendedor', async (req, res) => {
 
 // Rota para cadastrar cliente
 app.post('/cadastrar_cliente', async (req, res) => {
-    const { razaoSocial, nomeFantasia, cnpjCpf, endereco, vendedorAtendimento, observacaoCliente, limiteCredito, tipoRegimeEstadual, numeroTelefones, responsavelCompras, responsavelFinanceiro, responsavelGeral, numeroIE } = req.body;
+    const { razaoSocial, nomeFantasia, cnpjCpf, endereco, vendedorAtendimento, observacaoCliente, limiteCredito, tipoRegimeEstadual, numeroTelefones, responsavelCompras, responsavelFinanceiro, responsavelGeral, numeroIE, tipoCliente, formaPagamento, prazoPagamento, modalidadeEntrega, descontoMaximo, prazoEntrega, responsavelEntrega, tipoIndustriaComercio, descricaoProdutosServicos, areaAtuacao, segmento, faturamentoAnual } = req.body;
 
     try {
-        const novoCliente = new Cliente({ razaoSocial, nomeFantasia, cnpjCpf, endereco, vendedorAtendimento, observacaoCliente, limiteCredito, tipoRegimeEstadual, numeroTelefones, responsavelCompras, responsavelFinanceiro, responsavelGeral, numeroIE });
+        const novoCliente = new Cliente({ razaoSocial, nomeFantasia, cnpjCpf, endereco, vendedorAtendimento, observacaoCliente, limiteCredito, tipoRegimeEstadual, numeroTelefones, responsavelCompras, responsavelFinanceiro, responsavelGeral, numeroIE, tipoCliente, formaPagamento, prazoPagamento, modalidadeEntrega, descontoMaximo, prazoEntrega, responsavelEntrega, tipoIndustriaComercio, descricaoProdutosServicos, areaAtuacao, segmento, faturamentoAnual });
+        novoCliente.dataHoraCadastro = new Date();
         await novoCliente.save();
         res.status(200).json({ message: 'Cliente cadastrado com sucesso!' });
     } catch (error) {
@@ -195,6 +210,8 @@ app.post('/cadastrar_cliente', async (req, res) => {
         res.status(500).json({ error: 'Erro interno do servidor ao cadastrar cliente' });
     }
 });
+
+
 
 // Rota para obter vendedores
 app.get('/vendedores', async (req, res) => {

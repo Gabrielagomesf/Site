@@ -14,7 +14,7 @@ body {
 
 /* Estilos para a barra de navegação */
 .navbar {
-    background-color: #3498db; /* Azul */
+    background-color: #3498db;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     white-space: nowrap;
@@ -108,6 +108,7 @@ body {
     overflow: hidden;
     border-bottom: 1px solid #ccc;
     background-color: #f9f9f9;
+    margin-bottom: 20px;
 }
 
 .tablinks {
@@ -157,9 +158,10 @@ form label {
 
 form input[type="text"],
 form textarea,
-form select {
-    width: 100%;
-    padding: 10px;
+form select,
+form input[type="date"] {
+    width: calc(100% - 24px);
+    padding: 12px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -169,7 +171,23 @@ form select {
 
 form input[type="text"]:focus,
 form textarea:focus,
-form select:focus {
+form select:focus,
+form input[type="date"]:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px #3498db;
+}
+
+form input[type="file"] {
+    width: calc(100% - 24px);
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+form input[type="file"]:focus {
     border-color: #3498db;
     box-shadow: 0 0 5px #3498db;
 }

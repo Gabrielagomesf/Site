@@ -54,6 +54,16 @@
             <label for="observacao-vendedor">Observação:</label><br>
             <textarea id="observacao-vendedor" name="observacao-vendedor"></textarea><br>
 
+            <label for="tipo-contrato">Tipo de Contrato:</label><br>
+            <select id="tipo-contrato" name="tipo-contrato">
+                <option value="Contrato fixo">Contrato fixo</option>
+                <option value="Contrato temporário">Contrato temporário</option>
+                <option value="Freelancer">Freelancer</option>
+            </select><br>
+
+            <label for="data-inicio-contrato">Data de Início do Contrato:</label><br>
+            <input type="date" id="data-inicio-contrato" name="data-inicio-contrato"><br>
+
             <input type="submit" value="Cadastrar Vendedor">
         </form>
     </div>
@@ -104,6 +114,46 @@
             <!-- Campo para upload de PDFs -->
             <label for="pdfs">Documentos (PDFs):</label><br>
             <input type="file" id="pdfs" name="pdfs" multiple><br>
+
+            <!-- Novos campos -->
+            <label for="tipo-cliente">Tipo de Cliente:</label><br>
+            <select id="tipo-cliente" name="tipo-cliente">
+                <option value="Pessoa Jurídica">Pessoa Jurídica</option>
+                <option value="Pessoa Física">Pessoa Física</option>
+            </select><br>
+
+            <label for="forma-pagamento">Forma de Pagamento Preferencial:</label><br>
+            <input type="text" id="forma-pagamento" name="forma-pagamento"><br>
+
+            <label for="prazo-pagamento">Prazo de Pagamento Preferencial:</label><br>
+            <input type="text" id="prazo-pagamento" name="prazo-pagamento"><br>
+
+            <label for="modalidade-entrega">Modalidade de Entrega Preferencial:</label><br>
+            <input type="text" id="modalidade-entrega" name="modalidade-entrega"><br>
+
+            <label for="desconto-maximo">Desconto Máximo Permitido:</label><br>
+            <input type="text" id="desconto-maximo" name="desconto-maximo"><br>
+
+            <label for="prazo-entrega">Prazo de Entrega Preferencial:</label><br>
+            <input type="text" id="prazo-entrega" name="prazo-entrega"><br>
+
+            <label for="responsavel-entrega">Responsável pela Entrega:</label><br>
+            <input type="text" id="responsavel-entrega" name="responsavel-entrega"><br>
+
+            <label for="tipo-industria-comercio">Tipo de Indústria ou Comércio:</label><br>
+            <input type="text" id="tipo-industria-comercio" name="tipo-industria-comercio"><br>
+
+            <label for="descricao-produtos-servicos">Descrição dos Produtos/Serviços:</label><br>
+            <textarea id="descricao-produtos-servicos" name="descricao-produtos-servicos"></textarea><br>
+
+            <label for="area-atuacao">Área de Atuação:</label><br>
+            <input type="text" id="area-atuacao" name="area-atuacao"><br>
+
+            <label for="segmento">Segmento:</label><br>
+            <input type="text" id="segmento" name="segmento"><br>
+
+            <label for="faturamento-anual">Faturamento Anual:</label><br>
+            <input type="text" id="faturamento-anual" name="faturamento-anual"><br>
 
             <input type="submit" value="Cadastrar Cliente">
         </form>
