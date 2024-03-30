@@ -16,7 +16,7 @@ function openTab(evt, tabName) {
 // Função para carregar os vendedores na aba do cliente
 async function carregarVendedores() {
     try {
-        const response = await fetch('/listar_vendedores');
+        const response = await fetch('/vendedores');
         if (response.ok) {
             const vendedores = await response.json();
             const selectVendedor = document.getElementById("vendedor-atendimento");

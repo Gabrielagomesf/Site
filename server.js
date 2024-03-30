@@ -196,12 +196,26 @@ app.post('/cadastrar_vendedor', async (req, res) => {
     }
 });
 
-// Rota para cadastrar cliente
+// Rota para cadastrar clientes
 app.post('/cadastrar_cliente', async (req, res) => {
-    const { razaoSocial, nomeFantasia, cnpjCpf, endereco, vendedorAtendimento, observacaoCliente, limiteCredito, tipoRegimeEstadual, numeroTelefones, responsavelCompras, responsavelFinanceiro, responsavelGeral, numeroIE, tipoCliente, formaPagamento, prazoPagamento, modalidadeEntrega, descontoMaximo, prazoEntrega, responsavelEntrega, tipoIndustriaComercio, descricaoProdutosServicos, areaAtuacao, segmento, faturamentoAnual } = req.body;
+    const {
+        razaoSocial, nomeFantasia, cnpjCpf, endereco, vendedorAtendimento,
+        observacaoCliente, limiteCredito, tipoRegimeEstadual, numeroTelefones,
+        responsavelCompras, responsavelFinanceiro, responsavelGeral, numeroIE,
+        tipoCliente, formaPagamento, prazoPagamento, modalidadeEntrega,
+        descontoMaximo, prazoEntrega, responsavelEntrega, tipoIndustriaComercio,
+        descricaoProdutosServicos, areaAtuacao, segmento, faturamentoAnual
+    } = req.body;
 
     try {
-        const novoCliente = new Cliente({ razaoSocial, nomeFantasia, cnpjCpf, endereco, vendedorAtendimento, observacaoCliente, limiteCredito, tipoRegimeEstadual, numeroTelefones, responsavelCompras, responsavelFinanceiro, responsavelGeral, numeroIE, tipoCliente, formaPagamento, prazoPagamento, modalidadeEntrega, descontoMaximo, prazoEntrega, responsavelEntrega, tipoIndustriaComercio, descricaoProdutosServicos, areaAtuacao, segmento, faturamentoAnual });
+        const novoCliente = new Cliente({
+            razaoSocial, nomeFantasia, cnpjCpf, endereco, vendedorAtendimento,
+            observacaoCliente, limiteCredito, tipoRegimeEstadual, numeroTelefones,
+            responsavelCompras, responsavelFinanceiro, responsavelGeral, numeroIE,
+            tipoCliente, formaPagamento, prazoPagamento, modalidadeEntrega,
+            descontoMaximo, prazoEntrega, responsavelEntrega, tipoIndustriaComercio,
+            descricaoProdutosServicos, areaAtuacao, segmento, faturamentoAnual
+        });
         novoCliente.dataHoraCadastro = new Date();
         await novoCliente.save();
         res.status(200).json({ message: 'Cliente cadastrado com sucesso!' });
@@ -211,62 +225,27 @@ app.post('/cadastrar_cliente', async (req, res) => {
     }
 });
 
-
-
-// Rota para obter vendedores
-app.get('/vendedores', async (req, res) => {
-    const { q } = req.query;
-    let filter = {};
-    if (q) {
-        filter = {
-            $or: [
-                { nome: { $regex: q, $options: 'i' } },
-                { telefone: { $regex: q, $options: 'i' } },
-                { regiao: { $regex: q, $options: 'i' } },
-                { observacao: { $regex: q, $options: 'i' } }
-            ]
-        };
-    }
-
-    try {
-        const vendedores = await Vendedor.find(filter);
-        res.json(vendedores);
-    } catch (error) {
-        console.error('Erro ao obter vendedores:', error);
-        res.status(500).json({ error: 'Erro interno do servidor ao obter vendedores' });
-    }
-});
-
-// Rota para obter clientes
+// Rota para listar clientes
 app.get('/clientes', async (req, res) => {
-    const { q } = req.query;
-    let filter = {};
-    if (q) {
-        filter = {
-            $or: [
-                { razaoSocial: { $regex: q, $options: 'i' } },
-                { nomeFantasia: { $regex: q, $options: 'i' } },
-                { cnpjCpf: { $regex: q, $options: 'i' } },
-                { endereco: { $regex: q, $options: 'i' } },
-                { vendedorAtendimento: { $regex: q, $options: 'i' } },
-                { observacaoCliente: { $regex: q, $options: 'i' } },
-                { limiteCredito: { $regex: q, $options: 'i' } },
-                { tipoRegimeEstadual: { $regex: q, $options: 'i' } },
-                { numeroTelefones: { $regex: q, $options: 'i' } },
-                { responsavelCompras: { $regex: q, $options: 'i' } },
-                { responsavelFinanceiro: { $regex: q, $options: 'i' } },
-                { responsavelGeral: { $regex: q, $options: 'i' } },
-                { numeroIE: { $regex: q, $options: 'i' } }
-            ]
-        };
-    }
-
     try {
+        const filter = req.query.q ? { $or: [{ razaoSocial: new RegExp(req.query.q, 'i') }, { cnpjCpf: new RegExp(req.query.q, 'i') }] } : {};
         const clientes = await Cliente.find(filter);
         res.json(clientes);
     } catch (error) {
-        console.error('Erro ao obter clientes:', error);
-        res.status(500).json({ error: 'Erro interno do servidor ao obter clientes' });
+        console.error('Erro ao buscar clientes:', error.message);
+        res.status(500).json({ error: 'Erro interno do servidor ao buscar clientes' });
+    }
+});
+
+// Rota para listar vendedores
+app.get('/vendedores', async (req, res) => {
+    try {
+        const filter = req.query.q ? { $or: [{ nome: new RegExp(req.query.q, 'i') }, { regiao: new RegExp(req.query.q, 'i') }] } : {};
+        const vendedores = await Vendedor.find(filter);
+        res.json(vendedores);
+    } catch (error) {
+        console.error('Erro ao buscar vendedores:', error.message);
+        res.status(500).json({ error: 'Erro interno do servidor ao buscar vendedores' });
     }
 });
 

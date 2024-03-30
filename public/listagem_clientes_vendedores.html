@@ -8,101 +8,99 @@
 </head>
 <body>
 
-<!-- Navbar -->
-<div class="navbar">
-    <a href="/inicio.html">Início</a>
-    <a href="/perfil.html">Perfil</a>
-    <div class="dropdown">
-        <button class="dropbtn">Perfil Financeiro</button>
-        <div class="dropdown-content">
-            <a href="/cadastro_clientes_vendedores.html">Cadastro de Clientes e Vendedores</a>
-            <a href="/aprovacao_pedidos.html">Aprovação de Pedidos</a>
-            <a href="/listagem_clientes_vendedores.html" class="active">Listagem de Clientes e Vendedores</a>
-            <a href="/gestao_bancos_contas.html">Gestão de Bancos e Contas</a>
-            <a href="/relatorios_financeiros.html">Relatórios Financeiros</a>
-            <a href="/historico_alteracoes.html">Histórico de Alterações</a>
-            <a href="/contas_pagar_receber.html">Contas a Pagar e Receber</a>
-            <a href="/gestao_comissoes.html">Gestão de Comissões</a>
-            <a href="/gestao_inadimplencia.html">Gestão de Inadimplência</a>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="/perfil.html">Perfil</a>
+        <div class="dropdown">
+            <button class="dropbtn">Perfil Financeiro</button>
+            <div class="dropdown-content">
+                <a href="/cadastro_clientes_vendedores.html">Cadastro de Clientes e Vendedores</a>
+                <a href="/aprovacao_pedidos.html">Aprovação de Pedidos</a>
+                <a href="/listagem_clientes_vendedores.html" class="active">Listagem de Clientes e Vendedores</a>
+                <a href="/gestao_bancos_contas.html">Gestão de Bancos e Contas</a>
+                <a href="/relatorios_financeiros.html">Relatórios Financeiros</a>
+                <a href="/historico_alteracoes.html">Histórico de Alterações</a>
+                <a href="/contas_pagar_receber.html">Contas a Pagar e Receber</a>
+                <a href="/gestao_comissoes.html">Gestão de Comissões</a>
+                <a href="/gestao_inadimplencia.html">Gestão de Inadimplência</a>
+            </div>
         </div>
-    </div>
-    <a href="#" id="btn-sair">Sair</a>
-</div>
-
-<!-- Conteúdo da página -->
-<div class="content">
-    <h1>Listagem de Clientes e Vendedores</h1>
-    
-    <!-- Abas -->
-    <div class="tabs">
-        <button class="tablinks active" onclick="openTab(event, 'clientes')">Clientes</button>
-        <button class="tablinks" onclick="openTab(event, 'vendedores')">Vendedores</button>
+        <a href="#" id="btn-sair">Sair</a>
     </div>
 
-    <!-- Aba de Clientes -->
-    <div id="clientes" class="tabcontent" style="display:block;">
-        <div class="search-bar">
-            <input type="text" id="search-input-clientes" placeholder="Buscar clientes por CNPJ/CPF, Razão Social, ou Código">
-            <button id="search-btn-clientes">Buscar</button>
+    <!-- Conteúdo da página -->
+    <div class="content">
+        <h1>Listagem de Clientes e Vendedores</h1>
+
+        <!-- Abas -->
+        <div class="tabs">
+            <button class="tablinks active" onclick="openTab(event, 'clientes')">Clientes</button>
+            <button class="tablinks" onclick="openTab(event, 'vendedores')">Vendedores</button>
         </div>
-        <!-- Lista de Clientes -->
-        <div class="table-container">
-            <h2>Tabela de Clientes</h2>
-            <table id="tabela-clientes">
-                <thead>
-                    <tr>
-                        <th>CNPJ/CPF</th>
-                        <th>Razão Social</th>
-                        <th>Código</th>
-                        <th>Data de Cadastro</th>
-                        <!-- Adicione mais colunas conforme necessário -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Os dados dos clientes serão carregados aqui -->
-                </tbody>
-            </table>
+
+        <!-- Aba de Clientes -->
+        <div id="clientes" class="tabcontent" style="display:block;">
+            <div class="search-bar">
+                <input type="text" id="search-input-clientes" placeholder="Buscar clientes por CNPJ/CPF, Razão Social, ou Código">
+                <button id="search-btn-clientes">Buscar</button>
+            </div>
+            <!-- Lista de Clientes -->
+            <div class="table-container">
+                <h2>Tabela de Clientes</h2>
+                <table id="tabela-clientes">
+                    <thead>
+                        <tr>
+                            <th>CNPJ/CPF</th>
+                            <th>Razão Social</th>
+                            <th>Código</th>
+                            <th>Data de Cadastro</th>
+                            <!-- Adicione mais colunas conforme necessário -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Os dados dos clientes serão carregados aqui -->
+                    </tbody>
+                </table>
+            </div>
+            <!-- Botão para gerar planilha de clientes -->
+            <button id="gerar-planilha-clientes">Gerar Planilha de Clientes</button>
         </div>
-        <!-- Botão para gerar planilha de clientes -->
-        <button id="gerar-planilha-clientes">Gerar Planilha de Clientes</button>
+
+        <!-- Aba de Vendedores -->
+        <div id="vendedores" class="tabcontent">
+            <div class="search-bar">
+                <input type="text" id="search-input-vendedores" placeholder="Buscar vendedores por nome, telefone, região, ou observação">
+                <button id="search-btn-vendedores">Buscar</button>
+            </div>
+            <!-- Lista de Vendedores -->
+            <div class="table-container">
+                <h2>Tabela de Vendedores</h2>
+                <table id="tabela-vendedores">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Região</th>
+                            <th>Código</th>
+                            <th>Data de Cadastro</th>
+                            <!-- Adicione mais colunas conforme necessário -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Os dados dos vendedores serão carregados aqui -->
+                    </tbody>
+                </table>
+            </div>
+            <!-- Botão para gerar planilha de vendedores -->
+            <button id="gerar-planilha-vendedores">Gerar Planilha de Vendedores</button>
+        </div>
     </div>
 
-    <!-- Aba de Vendedores -->
-    <div id="vendedores" class="tabcontent">
-        <div class="search-bar">
-            <input type="text" id="search-input-vendedores" placeholder="Buscar vendedores por nome, telefone, região, ou observação">
-            <button id="search-btn-vendedores">Buscar</button>
-        </div>
-        <!-- Lista de Vendedores -->
-        <div class="table-container">
-            <h2>Tabela de Vendedores</h2>
-            <table id="tabela-vendedores">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Telefone</th>
-                        <th>Região</th>
-                        <th>Código</th>
-                        <th>Data de Cadastro</th>
-                        <!-- Adicione mais colunas conforme necessário -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Os dados dos vendedores serão carregados aqui -->
-                </tbody>
-            </table>
-        </div>
-        <!-- Botão para gerar planilha de vendedores -->
-        <button id="gerar-planilha-vendedores">Gerar Planilha de Vendedores</button>
-    </div>
-</div>
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 Todos os direitos reservados.</p>
+    </footer>
 
-<!-- Rodapé -->
-<footer>
-    <p>&copy; 2024 Todos os direitos reservados.</p>
-</footer>
-
-<script src="xlsx.full.min.js"></script>
-<script src="listagem_clientes_vendedores.js"></script>
+    <script src="listagem_clientes_vendedores.js"></script>
 </body>
 </html>

@@ -11,102 +11,110 @@ function openTab(evt, tabName) {
     }
 
     document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.classList.add("active");
+    evt.target.classList.add("active");
 }
 
 // Função para buscar clientes
-function buscarClientes() {
+async function buscarClientes() {
     var filter = document.getElementById("search-input-clientes").value.toUpperCase();
 
-    fetch('/clientes?q=' + filter)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro ao buscar clientes: ' + response.status);
-            }
-            return response.json();
-        })
-        .then(data => {
-            var listaClientes = document.getElementById("tabela-clientes").getElementsByTagName('tbody')[0];
-            listaClientes.innerHTML = '';
+    try {
+        const response = await fetch('/clientes?q=' + filter);
+        if (!response.ok) {
+            throw new Error('Erro ao buscar clientes: ' + response.status);
+        }
+        const data = await response.json();
+        var listaClientes = document.getElementById("tabela-clientes").getElementsByTagName('tbody')[0];
+        listaClientes.innerHTML = '';
 
-            data.forEach(cliente => {
-                var tr = document.createElement("tr");
+        data.forEach(cliente => {
+            var tr = document.createElement("tr");
 
-                var tdCNPJCPF = document.createElement("td");
-                tdCNPJCPF.textContent = cliente.cnpjCpf;
-                tr.appendChild(tdCNPJCPF);
+            var tdCNPJCPF = document.createElement("td");
+            tdCNPJCPF.textContent = cliente.cnpjCpf;
+            tr.appendChild(tdCNPJCPF);
 
-                var tdRazaoSocial = document.createElement("td");
-                tdRazaoSocial.textContent = cliente.razaoSocial;
-                tr.appendChild(tdRazaoSocial);
+            var tdRazaoSocial = document.createElement("td");
+            tdRazaoSocial.textContent = cliente.razaoSocial;
+            tr.appendChild(tdRazaoSocial);
 
-                var tdCodigo = document.createElement("td");
-                tdCodigo.textContent = cliente._id;
-                tr.appendChild(tdCodigo);
+            var tdCodigo = document.createElement("td");
+            tdCodigo.textContent = cliente._id;
+            tr.appendChild(tdCodigo);
 
-                var tdDataCadastro = document.createElement("td");
-                var dataCadastro = new Date(cliente.dataHoraCadastro);
-                var dataFormatada = dataCadastro.toLocaleDateString();
-                tdDataCadastro.textContent = dataFormatada;
-                tr.appendChild(tdDataCadastro);
+            var tdDataCadastro = document.createElement("td");
+            var dataCadastro = new Date(cliente.dataHoraCadastro);
+            var dataFormatada = dataCadastro.toLocaleDateString();
+            tdDataCadastro.textContent = dataFormatada;
+            tr.appendChild(tdDataCadastro);
 
-                listaClientes.appendChild(tr);
-            });
-        })
-        .catch(error => {
-            console.error('Erro ao buscar clientes:', error);
-            alert('Erro ao buscar clientes. Por favor, tente novamente mais tarde.');
+            listaClientes.appendChild(tr);
         });
+    } catch (error) {
+        console.error('Erro ao buscar clientes:', error);
+        alert('Erro ao buscar clientes. Por favor, tente novamente mais tarde.');
+    }
 }
 
 // Função para buscar vendedores
-function buscarVendedores() {
+async function buscarVendedores() {
     var filter = document.getElementById("search-input-vendedores").value.toUpperCase();
 
-    fetch('/vendedores?q=' + filter)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro ao buscar vendedores: ' + response.status);
-            }
-            return response.json();
-        })
-        .then(data => {
-            var listaVendedores = document.getElementById("tabela-vendedores").getElementsByTagName('tbody')[0];
-            listaVendedores.innerHTML = '';
+    try {
+        const response = await fetch('/vendedores?q=' + filter);
+        if (!response.ok) {
+            throw new Error('Erro ao buscar vendedores: ' + response.status);
+        }
+        const data = await response.json();
+        var listaVendedores = document.getElementById("tabela-vendedores").getElementsByTagName('tbody')[0];
+        listaVendedores.innerHTML = '';
 
-            data.forEach(vendedor => {
-                var tr = document.createElement("tr");
+        data.forEach(vendedor => {
+            var tr = document.createElement("tr");
 
-                var tdNome = document.createElement("td");
-                tdNome.textContent = vendedor.nome;
-                tr.appendChild(tdNome);
+            var tdNome = document.createElement("td");
+            tdNome.textContent = vendedor.nome;
+            tr.appendChild(tdNome);
 
-                var tdTelefone = document.createElement("td");
-                tdTelefone.textContent = vendedor.telefone;
-                tr.appendChild(tdTelefone);
+            var tdTelefone = document.createElement("td");
+            tdTelefone.textContent = vendedor.telefone;
+            tr.appendChild(tdTelefone);
 
-                var tdRegiao = document.createElement("td");
-                tdRegiao.textContent = vendedor.regiao;
-                tr.appendChild(tdRegiao);
+            var tdRegiao = document.createElement("td");
+            tdRegiao.textContent = vendedor.regiao;
+            tr.appendChild(tdRegiao);
 
-                var tdCodigo = document.createElement("td");
-                tdCodigo.textContent = vendedor._id;
-                tr.appendChild(tdCodigo);
+            var tdCodigo = document.createElement("td");
+            tdCodigo.textContent = vendedor._id;
+            tr.appendChild(tdCodigo);
 
-                var tdDataCadastro = document.createElement("td");
-                var dataCadastro = new Date(vendedor.dataHoraCadastro);
-                var dataFormatada = dataCadastro.toLocaleDateString();
-                tdDataCadastro.textContent = dataFormatada;
-                tr.appendChild(tdDataCadastro);
+            var tdDataCadastro = document.createElement("td");
+            var dataCadastro = new Date(vendedor.dataHoraCadastro);
+            var dataFormatada = dataCadastro.toLocaleDateString();
+            tdDataCadastro.textContent = dataFormatada;
+            tr.appendChild(tdDataCadastro);
 
-                listaVendedores.appendChild(tr);
-            });
-        })
-        .catch(error => {
-            console.error('Erro ao buscar vendedores:', error);
-            alert('Erro ao buscar vendedores. Por favor, tente novamente mais tarde.');
+            listaVendedores.appendChild(tr);
         });
+    } catch (error) {
+        console.error('Erro ao buscar vendedores:', error);
+        alert('Erro ao buscar vendedores. Por favor, tente novamente mais tarde.');
+    }
 }
+// Event listeners para botões de busca
+document.getElementById("search-btn-clientes").addEventListener("click", buscarClientes);
+document.getElementById("search-input-clientes").addEventListener("keypress", function (e) {
+    if (e.key === 'Enter') {
+        buscarClientes();
+    }
+});
+document.getElementById("search-btn-vendedores").addEventListener("click", buscarVendedores);
+document.getElementById("search-input-vendedores").addEventListener("keypress", function (e) {
+    if (e.key === 'Enter') {
+        buscarVendedores();
+    }
+});
+
 
 // Função para gerar planilha de clientes
 function gerarPlanilhaClientes() {
