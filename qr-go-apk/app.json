@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "QR Go",
+    "slug": "qr-go",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "android": { "package": "com.qrgo.app", "versionCode": 1 }
+  }
+}
